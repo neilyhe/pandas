@@ -1,0 +1,75 @@
+<view class="page">
+  <block wx:if="{{viewState === 'loading'}}">
+    <view class="state">
+      <view class="spinner"></view>
+      <text class="state-text">正在加载…</text>
+    </view>
+  </block>
+
+  <block wx:elif="{{viewState === 'error'}}">
+    <view class="state">
+      <text class="state-emoji">🐼</text>
+      <text class="state-text">{{errorMsg}}</text>
+      <button class="retry" bindtap="fetch">重试</button>
+    </view>
+  </block>
+
+  <block wx:elif="{{viewState === 'empty'}}">
+    <view class="state">
+      <text class="state-emoji">🎋</text>
+      <text class="state-text">这条动态不存在或已下架</text>
+    </view>
+  </block>
+
+  <block wx:else>
+    <view class="hero-wrap">
+      <image
+        class="hero"
+        src="{{item.cover}}"
+        mode="aspectFill"
+        bindtap="previewImage"
+        data-src="{{item.cover}}"
+      />
+      <view class="hero-shade"></view>
+    </view>
+
+    <view class="body">
+      <view class="meta">
+        <text class="chip" wx:if="{{item.tag}}">{{item.tag}}</text>
+        <text class="chip panda" wx:if="{{item.pandaName}}">{{item.pandaName}}</text>
+        <text class="date">{{item.dateText}}</text>
+      </view>
+
+      <text class="title">{{item.title}}</text>
+
+      <view class="summary" wx:if="{{item.summary}}">
+        <text class="summary-txt">{{item.summary}}</text>
+      </view>
+
+      <view class="paragraphs">
+        <text class="para" wx:for="{{paragraphs}}" wx:key="index">{{item}}</text>
+      </view>
+
+      <view class="like-row">
+        <button class="like {{liked ? 'on' : ''}} {{liking ? 'dim' : ''}}" bindtap="toggleLike">
+          {{liked ? '♥ 已赞' : '♡ 点赞'}} · {{likes}}
+        </button>
+      </view>
+
+      <view class="extras" wx:if="{{extras.length}}">
+        <image
+          class="extra-img"
+          wx:for="{{extras}}"
+          wx:key="index"
+          src="{{item}}"
+          mode="widthFix"
+          lazy-load
+          bindtap="previewImage"
+          data-src="{{item}}"
+        />
+      </view>
+
+      <view class="end">🎋 熊猫动态圈 · 下次见 🎋</view>
+    </view>
+  </block>
+</view>

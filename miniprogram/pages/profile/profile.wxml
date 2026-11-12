@@ -1,0 +1,97 @@
+<view class="page">
+  <block wx:if="{{authState === 'checking'}}">
+    <view class="state">
+      <view class="spinner"></view>
+      <text class="state-text">正在检查登录状态…</text>
+    </view>
+  </block>
+
+  <!-- 未登录：登录卡片 -->
+  <block wx:elif="{{authState === 'signed-out'}}">
+    <view class="top-bg">
+      <text class="top-deco d1">🎋</text>
+      <text class="top-deco d2">🐼</text>
+      <view class="brand">
+        <text class="brand-emoji">🐼</text>
+        <text class="brand-title">熊猫动态圈</text>
+        <text class="brand-sub">登录后可以守护熊猫、给动态点赞</text>
+      </view>
+    </view>
+
+    <view class="card login">
+      <view class="seg">
+        <view class="seg-item {{loginMode === 'email' ? 'on' : ''}}" data-mode="email" bindtap="switchMode">邮箱登录</view>
+        <view class="seg-item {{loginMode === 'phone' ? 'on' : ''}}" data-mode="phone" bindtap="switchMode">手机登录</view>
+      </view>
+
+      <input
+        class="ipt"
+        type="{{loginMode === 'email' ? 'text' : 'number'}}"
+        placeholder="{{loginMode === 'email' ? '邮箱地址' : '手机号（11 位）'}}"
+        value="{{account}}"
+        bindinput="onAccountInput"
+      />
+
+      <view class="code-row">
+        <input class="ipt code" type="number" placeholder="验证码" value="{{code}}" bindinput="onCodeInput" />
+        <button class="send {{countdown > 0 ? 'dim' : ''}}" bindtap="sendCode" disabled="{{sending || countdown > 0}}">
+          {{sending ? '发送中…' : (countdown > 0 ? countdown + 's' : '获取验证码')}}
+        </button>
+      </view>
+
+      <text class="err" wx:if="{{loginError}}">{{loginError}}</text>
+
+      <button class="primary {{submitting ? 'dim' : ''}}" bindtap="doLogin" disabled="{{submitting}}">
+        {{submitting ? '登录中…' : '登录 / 注册'}}
+      </button>
+      <text class="tip">验证码即登录：新账号会自动注册</text>
+    </view>
+  </block>
+
+  <!-- 已登录 -->
+  <block wx:else>
+    <view class="me-card">
+      <view class="me-row">
+        <view class="me-avatar">🐼</view>
+        <view class="me-info">
+          <text class="me-name">{{userLabel}}</text>
+          <text class="me-sub">熊猫迷 · 已登录</text>
+        </view>
+        <button class="out" bindtap="signOut">退出</button>
+      </view>
+    </view>
+
+    <view class="wrap">
+      <view class="section">
+        <view class="sec-head">
+          <view class="sec-bar"></view>
+          <text class="sec-title">我的守护（{{guardians.length}}）</text>
+        </view>
+        <view wx:if="{{!guardians.length}}" class="empty-line">还没有守护的熊猫，去图鉴看看吧 🐾</view>
+        <view class="guard-item" wx:for="{{guardians}}" wx:key="id" data-id="{{item.id}}" bindtap="goPanda" hover-class="item-hover">
+          <image class="guard-img" src="{{item.avatar}}" mode="aspectFill" />
+          <view class="guard-info">
+            <text class="guard-name">{{item.name}}</text>
+            <text class="guard-base">{{item.base}}</text>
+          </view>
+          <button class="ghost tiny" data-id="{{item.id}}" catchtap="unguard">取消守护</button>
+        </view>
+      </view>
+
+      <view class="section" wx:if="{{submissions.length}}">
+        <view class="sec-head">
+          <view class="sec-bar"></view>
+          <text class="sec-title">我的投稿（{{submissions.length}}）</text>
+        </view>
+        <view class="sub-item" wx:for="{{submissions}}" wx:key="id">
+          <view class="sub-main">
+            <text class="sub-name">{{item.pandaName}}</text>
+            <text class="sub-kind">{{item.kindText}} · {{item.dateText}}</text>
+            <text class="sub-note" wx:if="{{item.note}}">审核备注：{{item.note}}</text>
+          </view>
+          <text class="badge {{item.status}}">{{item.statusText}}</text>
+        </view>
+      </view>
+    </view>
+  </block>
+</view>

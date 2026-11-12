@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1" />
+  <meta name="theme-color" content="#eef1f7" />
+  <meta name="description" content="熊猫动态圈 · 每天看滚滚的新鲜事，和熊猫迷一起聊国宝" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="熊猫动态圈" />
+  <meta property="og:title" content="熊猫动态圈 · 每天看滚滚" />
+  <meta property="og:description" content="每天看滚滚的新鲜事，和熊猫迷一起聊国宝" />
+  <meta property="og:image" content="https://panda-circle-19851.app.workbuddy.host/webapp/assets/hua.webp" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <title>熊猫动态圈 · 每天看滚滚</title>
+  <link rel="preload" as="image" href="assets/hua.webp" />
+  <link rel="stylesheet" href="style.css?v=20261109" />
+  <link rel="stylesheet" href="admin.css?v=20261109" />
+  <link rel="icon" href="assets/hua.webp" />
+</head>
+<body>
+  <div class="app" id="app">
+    <main class="views" id="views">
+      <!-- ============ 首页 ============ -->
+      <section class="tab-panel active" id="tab-home">
+        <div class="sec-head">
+          <h2>今日焦点</h2>
+          <span class="sec-sub">左右滑动看更多</span>
+        </div>
+        <div class="slider">
+          <div class="slider-track" id="bannerTrack"></div>
+          <div class="dots" id="bannerDots"></div>
+        </div>
+
+        <div class="sec-head">
+          <h2>熊猫速览</h2>
+          <span class="sec-sub">点开看档案</span>
+        </div>
+        <div class="panda-row" id="quickPandas"></div>
+
+        <div class="sec-head">
+          <h2>每日动态</h2>
+          <span class="sec-sub" id="newsCount"></span>
+        </div>
+        <div class="chips" id="homeChips"></div>
+        <div class="feed" id="newsFeed"></div>
+      </section>
+
+      <!-- ============ 熊猫圈 ============ -->
+      <section class="tab-panel" id="tab-community">
+        <div class="post-feed" id="postFeed"></div>
+      </section>
+
+      <!-- ============ 图鉴 ============ -->
+      <section class="tab-panel" id="tab-pandas">
+        <div class="sticky-tools" id="pandaTools">
+          <div class="search-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+            <input id="pandaSearch" placeholder="搜索名字 / 基地 / 性格" />
+          </div>
+          <div class="chips" id="pandaChips"></div>
+        </div>
+        <div class="panda-grid" id="pandaGrid"></div>
+        <p class="fineprint">档案根据公开资料整理，仅供交流参考</p>
+      </section>
+
+      <!-- ============ 我的 ============ -->
+      <section class="tab-panel" id="tab-me">
+        <div id="meRoot"></div>
+        <p class="fineprint">数据保存在云端 · 用心关爱国宝</p>
+      </section>
+    </main>
+
+    <!-- 底部 Tab -->
+    <nav class="tabbar" id="tabbar">
+      <button class="tab active" data-tab="home">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5.5 9.5V21h13V9.5"/><path d="M9.5 21v-6h5v6"/></svg>
+        <span>首页</span>
+      </button>
+      <button class="tab" data-tab="community">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-8 8H7l-4 2 1.2-4.2A8 8 0 1 1 21 12Z"/><circle cx="9" cy="12" r="1"/><circle cx="12.5" cy="12" r="1"/><circle cx="16" cy="12" r="1"/></svg>
+        <span>熊猫圈</span>
+      </button>
+      <button class="tab" data-tab="pandas">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20.4c-2.9 0-5.4-1.7-5.4-4.1 0-2.2 2.2-4.2 5.4-4.2s5.4 2 5.4 4.2c0 2.4-2.5 4.1-5.4 4.1z"/><ellipse cx="6.6" cy="9.6" rx="2.5" ry="2.9"/><ellipse cx="10.9" cy="6.4" rx="2.5" ry="2.9"/><ellipse cx="15.9" cy="7" rx="2.4" ry="2.8"/><ellipse cx="19" cy="10.6" rx="2.3" ry="2.7"/></svg>
+        <span>图鉴</span>
+      </button>
+      <button class="tab" data-tab="me">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4.5 20.5c1.6-3.6 4.2-5.5 7.5-5.5s5.9 1.9 7.5 5.5"/></svg>
+        <span>我的</span>
+      </button>
+      <span class="tab-indicator" id="tabIndicator"></span>
+    </nav>
+
+    <!-- 悬浮发布按钮（置于 tab 面板之外，避免被子元素的 transform 影响定位） -->
+    <button class="fab" id="fabCompose" aria-label="发布帖子">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5.5v13M5.5 12h13"/></svg>
+    </button>
+
+    <!-- 悬浮添加熊猫（仅图鉴页显示） -->
+    <button class="fab fab-panda" id="fabPanda" aria-label="添加熊猫档案">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M11.6 19.6c-2.5 0-4.7-1.5-4.7-3.6 0-1.9 1.9-3.7 4.7-3.7s4.7 1.8 4.7 3.7c0 2.1-2.2 3.6-4.7 3.6z"/>
+        <ellipse cx="7" cy="10.2" rx="2.1" ry="2.5"/>
+        <ellipse cx="10.6" cy="7.4" rx="2.1" ry="2.5"/>
+        <ellipse cx="14.9" cy="7.8" rx="2" ry="2.4"/>
+        <ellipse cx="18.2" cy="11" rx="1.9" ry="2.3"/>
+      </svg>
+      <span class="fab-plus">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 6v12M6 12h12"/></svg>
+      </span>
+    </button>
+  </div>
+
+  <!-- 全屏详情页容器 -->
+  <div class="page-stack" id="pageStack"></div>
+
+  <div class="toast" id="toast" hidden></div>
+
+  <!-- 云 SDK：优先本地副本（国内/微信内打开更稳），失败时回退 CDN -->
+  <script src="assets/wb-cloud-sdk.js"></script>
+  <script>
+    if (typeof WorkBuddyCloud === "undefined") {
+      document.write(
+        '<script src="https://cdn.jsdelivr.net/npm/@tencent-ai/workbuddy-cloud-sdk@dev/lib/index.global.js"><\/script>'
+      );
+    }
+  </script>
+  <script src="app.js?v=20261109"></script>
+  <script src="admin.js?v=20261109"></script>
+</body>
+</html>

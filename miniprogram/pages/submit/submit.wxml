@@ -1,0 +1,62 @@
+<view class="page">
+  <view class="head">
+    <text class="head-title">{{editMode ? '完善熊猫档案' : '投稿新熊猫'}}</text>
+    <text class="head-sub">提交后会经管理员审核，通过后全站可见；投稿者自动成为守护人 🐼</text>
+  </view>
+
+  <view class="card">
+    <view class="field" wx:for="{{fields}}" wx:key="k">
+      <text class="label">{{item.label}}{{item.req ? ' *' : ''}}</text>
+      <picker
+        wx:if="{{item.type === 'select'}}"
+        range="{{item.opts}}"
+        value="{{values[item.k] === '女' ? 1 : values[item.k] === '男' ? 2 : values[item.k] === '未知' ? 3 : 0}}"
+        data-k="{{item.k}}"
+        bindchange="setField"
+      >
+        <view class="ipt picker {{values[item.k] ? '' : 'ph'}}">{{values[item.k] || '请选择'}}</view>
+      </picker>
+      <textarea
+        wx:elif="{{item.type === 'textarea'}}"
+        class="ipt area"
+        placeholder="{{item.ph}}"
+        value="{{values[item.k]}}"
+        data-k="{{item.k}}"
+        bindinput="setField"
+        maxlength="500"
+        auto-height
+      />
+      <input
+        wx:else
+        class="ipt"
+        placeholder="{{item.ph}}"
+        value="{{values[item.k]}}"
+        data-k="{{item.k}}"
+        bindinput="setField"
+      />
+    </view>
+  </view>
+
+  <view class="card">
+    <text class="label">照片（选填，最多 4 张）</text>
+    <view class="gal">
+      <view class="gal-cell" wx:for="{{photos}}" wx:key="index">
+        <image
+          class="gal-img"
+          src="{{item}}"
+          mode="aspectFill"
+          data-i="{{index}}"
+          bindtap="previewPhoto"
+        />
+        <view class="gal-x" data-i="{{index}}" catchtap="removePhoto">×</view>
+      </view>
+      <view class="gal-add" wx:if="{{photos.length < 4}}" bindtap="pickPhoto">＋</view>
+    </view>
+  </view>
+
+  <text class="err" wx:if="{{error}}">{{error}}</text>
+
+  <button class="primary {{submitting ? 'dim' : ''}}" bindtap="submit" disabled="{{submitting}}">
+    {{submitting ? '提交中…' : '提交审核'}}
+  </button>
+</view>

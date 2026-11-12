@@ -1,0 +1,46 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/pandas/pandas",
+    "pages/profile/profile",
+    "pages/news-detail/news-detail",
+    "pages/panda-detail/panda-detail",
+    "pages/submit/submit"
+  ],
+  "window": {
+    "navigationBarTitleText": "熊猫动态圈",
+    "navigationBarBackgroundColor": "#d5e8cb",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#f3f8ef",
+    "backgroundTextStyle": "dark"
+  },
+  "tabBar": {
+    "color": "#a0a89c",
+    "selectedColor": "#4a7c59",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "动态",
+        "iconPath": "assets/tabbar/tab-news.png",
+        "selectedIconPath": "assets/tabbar/tab-news-on.png"
+      },
+      {
+        "pagePath": "pages/pandas/pandas",
+        "text": "图鉴",
+        "iconPath": "assets/tabbar/tab-book.png",
+        "selectedIconPath": "assets/tabbar/tab-book-on.png"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "我的",
+        "iconPath": "assets/tabbar/tab-me.png",
+        "selectedIconPath": "assets/tabbar/tab-me-on.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}

@@ -1,0 +1,14 @@
+# WorkBuddy 会话/配置数据
+.workbuddy/
+*.genie
+
+# 系统文件
+.DS_Store
+.Trash/
+
+# 依赖（miniprogram_npm 为手动构建产物，保留入库以便开发者工具直接使用）
+node_modules/
+
+# 编辑器
+.idea/
+.vscode/

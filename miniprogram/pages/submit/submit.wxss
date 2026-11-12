@@ -1,0 +1,141 @@
+.page {
+  min-height: 100vh;
+  padding: 28rpx 24rpx 80rpx;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 24rpx;
+}
+
+.head {
+  position: relative;
+  background: var(--header-grad);
+  border-radius: 32rpx;
+  padding: 36rpx 34rpx;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+.head::after {
+  content: "🐼";
+  position: absolute;
+  right: 26rpx;
+  bottom: -6rpx;
+  font-size: 88rpx;
+  opacity: 0.22;
+  line-height: 1;
+}
+.head-title {
+  display: block;
+  color: var(--ink-on-header);
+  font-size: 40rpx;
+  font-weight: 800;
+  letter-spacing: 2rpx;
+}
+.head-sub {
+  display: block;
+  margin-top: 12rpx;
+  color: rgba(47, 74, 56, 0.66);
+  font-size: 24rpx;
+  line-height: 1.6;
+}
+
+.card {
+  background: var(--card);
+  border-radius: 28rpx;
+  padding: 30rpx 30rpx 34rpx;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 24rpx;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+}
+.label {
+  font-size: 25rpx;
+  font-weight: 600;
+  color: var(--ink-2);
+}
+
+.ipt {
+  background: var(--bg);
+  border-radius: 20rpx;
+  padding: 24rpx 26rpx;
+  font-size: 28rpx;
+  width: 100%;
+  box-sizing: border-box;
+}
+.ipt.area {
+  min-height: 150rpx;
+  line-height: 1.65;
+}
+.picker.ph {
+  color: var(--ink-3);
+}
+
+.gal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18rpx;
+}
+.gal-cell {
+  position: relative;
+  width: 156rpx;
+  height: 156rpx;
+}
+.gal-img {
+  width: 156rpx;
+  height: 156rpx;
+  border-radius: 20rpx;
+  box-shadow: var(--shadow-sm);
+}
+.gal-x {
+  position: absolute;
+  right: -10rpx;
+  top: -10rpx;
+  width: 42rpx;
+  height: 42rpx;
+  border-radius: 50%;
+  background: rgba(20, 40, 30, 0.72);
+  color: #fff;
+  font-size: 28rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4rpx 10rpx rgba(0, 0, 0, 0.2);
+}
+.gal-add {
+  width: 156rpx;
+  height: 156rpx;
+  border-radius: 20rpx;
+  border: 3rpx dashed #c3d2c8;
+  background: var(--bg);
+  color: var(--ink-3);
+  font-size: 56rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.err {
+  color: var(--red);
+  font-size: 26rpx;
+  padding: 0 8rpx;
+}
+
+.primary {
+  background: var(--brand-grad);
+  color: #fff;
+  font-size: 32rpx;
+  font-weight: 700;
+  border-radius: 999rpx;
+  padding: 28rpx 0;
+  box-shadow: 0 12rpx 28rpx rgba(74, 124, 89, 0.32);
+}
+.primary.dim {
+  opacity: 0.6;
+}

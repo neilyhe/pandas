@@ -1,0 +1,7 @@
+{
+  "name": "@tencent-ai/workbuddy-cloud-sdk",
+  "version": "0.1.4-dev.ca27990.202610161713",
+  "description": "WorkBuddy Cloud SDK — auth / database / storage / llm modules for generated applications.",
+  "miniprogram": "miniprogram_dist",
+  "main": "miniprogram.js"
+}

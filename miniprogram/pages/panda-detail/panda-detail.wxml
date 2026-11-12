@@ -1,0 +1,79 @@
+<view class="page">
+  <block wx:if="{{viewState === 'loading'}}">
+    <view class="state">
+      <view class="spinner"></view>
+      <text class="state-text">正在加载档案…</text>
+    </view>
+  </block>
+
+  <block wx:elif="{{viewState === 'error'}}">
+    <view class="state">
+      <text class="state-emoji">🐼</text>
+      <text class="state-text">{{errorMsg}}</text>
+      <button class="retry" bindtap="fetch">重试</button>
+    </view>
+  </block>
+
+  <block wx:elif="{{viewState === 'empty'}}">
+    <view class="state">
+      <text class="state-emoji">🎋</text>
+      <text class="state-text">这只熊猫不在图鉴里</text>
+    </view>
+  </block>
+
+  <block wx:else>
+    <view class="hero-wrap">
+      <image
+        class="hero"
+        src="{{panda.hero}}"
+        mode="aspectFill"
+        bindtap="previewImage"
+        data-src="{{panda.hero}}"
+      />
+      <view class="hero-shade"></view>
+      <view class="hero-info">
+        <view class="name-row">
+          <text class="name">{{panda.name}}</text>
+          <text class="gender" wx:if="{{panda.gender}}">{{panda.gender}}</text>
+        </view>
+        <text class="base" wx:if="{{panda.base}}">📍 {{panda.base}}</text>
+      </view>
+    </view>
+
+    <view class="actions">
+      <button class="guard {{meGuarding ? 'on' : ''}} {{guarding ? 'dim' : ''}}" bindtap="toggleGuard">
+        {{meGuarding ? '♥ 已守护 · 点取消' : '♡ 守护 TA'}}
+      </button>
+    </view>
+
+    <view class="card info" wx:if="{{infoRows.length}}">
+      <view class="row" wx:for="{{infoRows}}" wx:key="label">
+        <text class="label">{{item.label}}</text>
+        <text class="value">{{item.value}}</text>
+      </view>
+    </view>
+
+    <view class="card bio" wx:if="{{bioParagraphs.length}}">
+      <view class="sec-head">
+        <view class="sec-bar"></view>
+        <text class="sec-title">小档案</text>
+      </view>
+      <view class="paragraphs">
+        <text class="para" wx:for="{{bioParagraphs}}" wx:key="index">{{item}}</text>
+      </view>
+    </view>
+
+    <view class="photos" wx:if="{{panda.photos.length}}">
+      <image
+        class="photo"
+        wx:for="{{panda.photos}}"
+        wx:key="index"
+        src="{{item}}"
+        mode="widthFix"
+        lazy-load
+        bindtap="previewImage"
+        data-src="{{item}}"
+      />
+    </view>
+  </block>
+</view>

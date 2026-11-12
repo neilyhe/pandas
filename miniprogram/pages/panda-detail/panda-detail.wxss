@@ -1,0 +1,143 @@
+.page {
+  min-height: 100vh;
+  background: var(--bg);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* 大图 + 信息叠层 */
+.hero-wrap {
+  position: relative;
+}
+.hero {
+  width: 100%;
+  height: 600rpx;
+  display: block;
+}
+.hero-shade {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 260rpx;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(22, 19, 14, 0.72) 100%);
+}
+.hero-info {
+  position: absolute;
+  left: 36rpx;
+  right: 36rpx;
+  bottom: 30rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 10rpx;
+}
+.name-row {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+.name {
+  color: #fff;
+  font-size: 52rpx;
+  font-weight: 800;
+  text-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.4);
+  letter-spacing: 2rpx;
+}
+.gender {
+  padding: 6rpx 18rpx;
+  border-radius: 999rpx;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--brand);
+  font-size: 22rpx;
+  font-weight: 700;
+}
+.base {
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 25rpx;
+}
+
+/* 悬浮守护按钮卡 */
+.actions {
+  margin: -44rpx 24rpx 0;
+  position: relative;
+  background: var(--card);
+  border-radius: 28rpx;
+  padding: 22rpx;
+  box-shadow: var(--shadow-md);
+}
+.guard {
+  width: 100%;
+  text-align: center;
+  background: var(--brand-grad);
+  color: #fff;
+  font-size: 30rpx;
+  font-weight: 700;
+  border-radius: 999rpx;
+  padding: 22rpx 0;
+  box-shadow: 0 8rpx 20rpx rgba(74, 124, 89, 0.32);
+}
+.guard.on {
+  background: var(--pink-soft);
+  color: var(--pink);
+  box-shadow: none;
+}
+.guard.dim {
+  opacity: 0.6;
+}
+
+/* 信息卡 */
+.card {
+  background: var(--card);
+  border-radius: 28rpx;
+  margin: 24rpx 24rpx 0;
+  padding: 30rpx;
+  box-shadow: var(--shadow-sm);
+}
+.info .row {
+  display: flex;
+  padding: 16rpx 0;
+  gap: 24rpx;
+}
+.info .row + .row {
+  border-top: 1rpx dashed var(--line);
+}
+.label {
+  color: var(--ink-3);
+  font-size: 26rpx;
+  width: 120rpx;
+  flex-shrink: 0;
+}
+.value {
+  color: var(--ink);
+  font-size: 28rpx;
+  line-height: 1.6;
+  flex: 1;
+}
+
+.bio .sec-head {
+  padding: 0 0 20rpx;
+}
+.paragraphs {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+.para {
+  font-size: 28rpx;
+  line-height: 1.85;
+  color: var(--ink-2);
+  text-align: justify;
+}
+
+/* 照片双列瀑布 */
+.photos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20rpx;
+  padding: 28rpx 24rpx 44rpx;
+}
+.photo {
+  width: calc(50% - 10rpx);
+  border-radius: 24rpx;
+  display: block;
+  box-shadow: var(--shadow-sm);
+}
