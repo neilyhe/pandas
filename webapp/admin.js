@@ -76,9 +76,9 @@
     return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())}T${p(d.getHours())}:${p(d.getMinutes())}`;
   }
   const isUrl = (v) => /^(https?:|data:|assets\/|\/)/.test(String(v || "").trim());
-  const coverSrc = (v, key) => (isUrl(v) ? v : `assets/cov-${window.avatarKeyOf(v || key)}.webp`);
-  const thumbSrc = (v, key) => (isUrl(v) ? v : `assets/sq-${window.avatarKeyOf(v || key)}.webp`);
-  const pandaSrc = (v, key) => (isUrl(v) ? v : `assets/${window.avatarKeyOf(v || key)}.webp`);
+  const coverSrc = (v, key) => (isUrl(v) ? v : `assets/cov-${window.avatarKeyOf(v || key)}.jpg`);
+  const thumbSrc = (v, key) => (isUrl(v) ? v : `assets/sq-${window.avatarKeyOf(v || key)}.jpg`);
+  const pandaSrc = (v, key) => (isUrl(v) ? v : `assets/${window.avatarKeyOf(v || key)}.jpg`);
   const pandaNameOfKey = (k) => window.PANDA_NAME[k] || k;
   /* 选择器里的缩略图要立即加载，避免出现灰块 */
   const picImg = (src) => `<img src="${src}" alt="" loading="eager" decoding="sync" />`;
@@ -86,7 +86,7 @@
   function avatarHTML(user) {
     if (user && user.avatar && isUrl(user.avatar)) return `<img src="${e(user.avatar)}" alt="" />`;
     const seed = user ? user.avatar_seed || user.nickname || "0" : "0";
-    return window.avatarImg ? window.avatarImg(seed) : `<img src="assets/${window.avatarKeyOf(seed)}.webp" alt="" />`;
+    return window.avatarImg ? window.avatarImg(seed) : `<img src="assets/${window.avatarKeyOf(seed)}.jpg" alt="" />`;
   }
 
   /** 邮箱脱敏：ab***@qq.com */
@@ -245,7 +245,7 @@
     ADM.root.innerHTML = `
       <aside class="adm-side" id="admSide">
         <div class="adm-brand">
-          <span class="adm-brand-logo"><img src="assets/hua.webp" alt="" /></span>
+          <span class="adm-brand-logo"><img src="assets/hua.jpg" alt="" /></span>
           <span class="adm-brand-txt"><b>熊猫动态圈</b><span>ADMIN CONSOLE</span></span>
         </div>
         <nav class="adm-nav" id="admNav">
@@ -830,7 +830,7 @@
       ${keys
         .map(
           (k) => `<button data-pick="${k}" class="${selKey === k ? "sel" : ""}">
-            ${picImg(`assets/cov-${k}.webp`)}<span>${pandaNameOfKey(k)}</span></button>`
+            ${picImg(`assets/cov-${k}.jpg`)}<span>${pandaNameOfKey(k)}</span></button>`
         )
         .join("")}
     </div>`;
@@ -1269,7 +1269,7 @@
             ${keys
               .map(
                 (k) => `<button data-pkey="${k}" class="${!isUrl(cur.photo) && (cur.photo || window.pandaKey(cur)) === k ? "sel" : ""}">
-                  ${picImg(`assets/p-${k}.webp`)}<span>${pandaNameOfKey(k)}</span></button>`
+                  ${picImg(`assets/p-${k}.jpg`)}<span>${pandaNameOfKey(k)}</span></button>`
               )
               .join("")}
           </div>
@@ -2215,7 +2215,7 @@
       body: `<div class="adm-imgpick">
         ${keys
           .map(
-            (k) => `<button data-gpick="${k}">${picImg(`assets/cov-${k}.webp`)}<span>${pandaNameOfKey(k)}</span></button>`
+            (k) => `<button data-gpick="${k}">${picImg(`assets/cov-${k}.jpg`)}<span>${pandaNameOfKey(k)}</span></button>`
           )
           .join("")}
       </div>
@@ -2309,7 +2309,7 @@
     layer.id = "admLogin";
     layer.innerHTML = `
       <div class="adm-login-card">
-        <div class="adm-login-logo"><img src="assets/hua.webp" alt="" /></div>
+        <div class="adm-login-logo"><img src="assets/hua.jpg" alt="" /></div>
         <h2>熊猫动态圈 · 管理后台</h2>
         <p>内容、评论、图鉴与用户治理<br/>请输入管理员密码继续</p>
         <input class="adm-input" id="admPwd" type="password" placeholder="管理员密码" />

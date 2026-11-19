@@ -81,7 +81,7 @@ function coverOf(item) {
   if (isRemoteImage(v)) return v
   const imgs = Array.isArray(item.images) ? item.images : []
   if (imgs.length && isRemoteImage(imgs[0])) return imgs[0]
-  return '/assets/cov-' + artKeyOf(item) + '.webp'
+  return '/assets/cov-' + artKeyOf(item) + '.jpg'
 }
 
 function pandaKeyOfRecord(p) {
@@ -119,15 +119,15 @@ function decoratePanda(p) {
   const imgs = Array.isArray(p.images) ? p.images : []
   return Object.assign({}, p, {
     key: key,
-    hero: isRemoteImage(photo) ? photo : '/assets/cov-' + key + '.webp',
-    avatar: '/assets/sq-' + key + '.webp',
+    hero: isRemoteImage(photo) ? photo : '/assets/cov-' + key + '.jpg',
+    avatar: '/assets/sq-' + key + '.jpg',
     photos: imgs.filter(isRemoteImage),
   })
 }
 
 /* 图鉴宫格头像地址 */
 function avatarOf(p) {
-  return '/assets/sq-' + pandaKeyOfRecord(p) + '.webp'
+  return '/assets/sq-' + pandaKeyOfRecord(p) + '.jpg'
 }
 
 module.exports = {

@@ -109,7 +109,7 @@ function avatarKeyOf(seed) {
   const s = String(seed ?? "0");
   return AVATAR_KEYS.includes(s) ? s : AVATAR_KEYS[hashSeed(s) % AVATAR_KEYS.length];
 }
-const avatarOf = (seed) => `assets/${avatarKeyOf(seed)}.webp`;
+const avatarOf = (seed) => `assets/${avatarKeyOf(seed)}.jpg`;
 const avatarImg = (seed, cls = "") => imgTag(avatarOf(seed), cls);
 
 function pandaKey(p) {
@@ -177,10 +177,10 @@ function imgSrcOf(value, kind, fallbackKey) {
   const v = String(value || "").trim();
   if (/^(https?:|data:|assets\/|\/)/.test(v)) return v;
   const key = AVATAR_KEYS.includes(v) ? v : fallbackKey;
-  if (kind === "cov") return `assets/cov-${key}.webp`;
-  if (kind === "sq") return `assets/sq-${key}.webp`;
-  if (kind === "p") return `assets/p-${key}.webp`;
-  return `assets/${key}.webp`;
+  if (kind === "cov") return `assets/cov-${key}.jpg`;
+  if (kind === "sq") return `assets/sq-${key}.jpg`;
+  if (kind === "p") return `assets/p-${key}.jpg`;
+  return `assets/${key}.jpg`;
 }
 const coverOf = (item) => imgSrcOf(item.image, "cov", artKeyOf(item)); // 焦点横幅 1120×644
 const thumbOf = (item) => imgSrcOf(item.image, "sq", artKeyOf(item)); // 列表方形缩略图
@@ -557,7 +557,7 @@ function postImages(p) {
 
 function postImageSrc(p) {
   const key = postPandaKey(p) || AVATAR_KEYS[hashSeed("pi" + p.id) % AVATAR_KEYS.length];
-  return `assets/cov-${key}.webp`;
+  return `assets/cov-${key}.jpg`;
 }
 
 function postCardHTML(p, opts = {}) {
@@ -720,7 +720,7 @@ function openCompose() {
         ${AVATAR_KEYS.map(
           (k) =>
             `<button class="av-opt ${avatarKeyOf(state.seed) === k ? "sel" : ""}" data-seed="${k}">
-               ${imgTag(`assets/${k}.webp`)}
+               ${imgTag(`assets/${k}.jpg`)}
              </button>`
         ).join("")}
       </div>
@@ -2789,7 +2789,7 @@ function openAbout() {
     body: `
       <div class="login-card" style="text-align:left">
         <div id="aboutLogo" style="width:64px;height:64px;border-radius:20px;overflow:hidden;margin:0 auto 12px">
-          ${imgTag("assets/hua.webp")}
+          ${imgTag("assets/hua.jpg")}
         </div>
         <h3 style="text-align:center;margin-top:0">熊猫动态圈</h3>
         <p style="text-align:center">每天和滚滚见面</p>
@@ -2915,12 +2915,12 @@ $("#rowSearch")?.addEventListener("click", openGlobalSearch);
    ========================================================== */
 function paintStatic() {
   const brand = $("#brandMark");
-  if (brand) brand.innerHTML = imgTag("assets/hua.webp");
+  if (brand) brand.innerHTML = imgTag("assets/hua.jpg");
   $("#bannerTrack").innerHTML = `<div class="skel skel-banner" style="margin:0;flex:1"></div>`;
   $("#newsFeed").innerHTML = `<div class="skel skel-card"></div><div class="skel skel-card"></div><div class="skel skel-card"></div>`;
   $("#quickPandas").innerHTML = AVATAR_KEYS.slice(0, 6)
     .map(
-      (k) => `<div class="rp"><div class="rp-img">${imgTag(`assets/${k}.webp`)}</div><span class="rp-name" style="color:#c3cad8">···</span></div>`
+      (k) => `<div class="rp"><div class="rp-img">${imgTag(`assets/${k}.jpg`)}</div><span class="rp-name" style="color:#c3cad8">···</span></div>`
     )
     .join("");
   const heroSkel = $("#heroCard");
