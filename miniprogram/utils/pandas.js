@@ -75,13 +75,20 @@ function isRemoteImage(v) {
   return /^(https?:|data:)/.test(String(v || '').trim())
 }
 
+/* 档案图统一走线上（已发布站点），不再打包进小程序包内 */
+const IMG_BASE = 'https://panda-circle-19851.app.workbuddy.host/assets'
+const IMG_SHARECODE = 'ZNBPRJVHAH'
+function remoteImg(name) {
+  return IMG_BASE + '/' + name + '?sharecode=' + IMG_SHARECODE
+}
+
 /* 动态封面：后台配了外链/上传图就用配置，否则按内容配档案封面 */
 function coverOf(item) {
   const v = String(item.image || '').trim()
   if (isRemoteImage(v)) return v
   const imgs = Array.isArray(item.images) ? item.images : []
   if (imgs.length && isRemoteImage(imgs[0])) return imgs[0]
-  return '/assets/cov-' + artKeyOf(item) + '.jpg'
+  return remoteImg('cov-' + artKeyOf(item) + '.jpg')
 }
 
 function pandaKeyOfRecord(p) {
@@ -119,15 +126,15 @@ function decoratePanda(p) {
   const imgs = Array.isArray(p.images) ? p.images : []
   return Object.assign({}, p, {
     key: key,
-    hero: isRemoteImage(photo) ? photo : '/assets/cov-' + key + '.jpg',
-    avatar: '/assets/sq-' + key + '.jpg',
+    hero: isRemoteImage(photo) ? photo : remoteImg('cov-' + key + '.jpg'),
+    avatar: remoteImg('sq-' + key + '.jpg'),
     photos: imgs.filter(isRemoteImage),
   })
 }
 
 /* 图鉴宫格头像地址 */
 function avatarOf(p) {
-  return '/assets/sq-' + pandaKeyOfRecord(p) + '.jpg'
+  return remoteImg('sq-' + pandaKeyOfRecord(p) + '.jpg')
 }
 
 module.exports = {
